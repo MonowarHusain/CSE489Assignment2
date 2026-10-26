@@ -35,6 +35,11 @@
             android:exported="false"
             android:label="@string/custom_broadcast_receiver" />
 
+        <activity
+            android:name=".BatteryReceiverActivity"
+            android:exported="false"
+            android:label="@string/battery_receiver_title" />
+
     </application>
 
 </manifest>

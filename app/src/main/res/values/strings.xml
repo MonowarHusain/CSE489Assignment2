@@ -19,4 +19,17 @@
     <string name="waiting_for_broadcast">Waiting for broadcast message…</string>
     <string name="error_empty_input">Please enter a message to broadcast</string>
     <string name="toast_battery_receiver">System battery notification receiver selected</string>
+
+    <!-- Battery Receiver Strings -->
+    <string name="battery_receiver_title">System Battery Notification</string>
+    <string name="current_battery">Current Battery: %1$d%%</string>
+    <string name="charging_status_format">Charging Status: %1$s</string>
+    <string name="charging">Charging</string>
+    <string name="charging_ac">Charging via AC</string>
+    <string name="charging_usb">Charging via USB</string>
+    <string name="charging_wireless">Charging via Wireless</string>
+    <string name="battery_full">Fully Charged</string>
+    <string name="discharging">Discharging</string>
+    <string name="not_charging">Not Charging</string>
+    <string name="unknown">Unknown</string>
 </resources>

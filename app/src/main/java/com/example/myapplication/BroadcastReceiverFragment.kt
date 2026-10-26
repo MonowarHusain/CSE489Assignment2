@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.myapplication.databinding.FragmentBroadcastReceiverBinding
 
@@ -45,12 +44,9 @@ class BroadcastReceiverFragment : Fragment() {
             if (selectedPosition == 0) {
                 val intent = Intent(requireContext(), CustomBroadcastInputActivity::class.java)
                 startActivity(intent)
-            } else {
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.toast_battery_receiver),
-                    Toast.LENGTH_SHORT
-                ).show()
+            } else if (selectedPosition == 1) {
+                val intent = Intent(requireContext(), BatteryReceiverActivity::class.java)
+                startActivity(intent)
             }
         }
     }

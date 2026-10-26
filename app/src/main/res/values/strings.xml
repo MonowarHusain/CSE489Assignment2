@@ -6,4 +6,17 @@
     <string name="nav_image_scale">Image Scale</string>
     <string name="nav_video">Video</string>
     <string name="nav_audio">Audio</string>
+
+    <!-- Broadcast Receiver Strings -->
+    <string name="select_broadcast_receiver">Select Broadcast Receiver Option:</string>
+    <string name="proceed">Proceed</string>
+    <string name="custom_broadcast_receiver">Custom broadcast receiver</string>
+    <string name="system_battery_receiver">System battery notification receiver</string>
+    <string name="custom_broadcast_input_title">Custom Broadcast Input</string>
+    <string name="enter_broadcast_message">Enter broadcast message</string>
+    <string name="send_broadcast">Send Broadcast</string>
+    <string name="broadcast_received_title">Received Broadcast Message:</string>
+    <string name="waiting_for_broadcast">Waiting for broadcast message…</string>
+    <string name="error_empty_input">Please enter a message to broadcast</string>
+    <string name="toast_battery_receiver">System battery notification receiver selected</string>
 </resources>

@@ -1,0 +1,309 @@
+================================================================================
+
+                            AI USAGE DECLARATION
+
+================================================================================
+
+
+
+1. PROJECT & AUTHOR DETAILS
+
+   - Project Name: CSE 489: Mobile Application Development - Assignment 2 (CSE489Assignment2)
+
+   - Author / Student ID: Monowar Husain Omi / 22301098
+
+   - Target Environment / Platform: Android (Min SDK 24, Target SDK 34/35), Kotlin, Android Studio
+
+
+
+2. TOOLS & MODELS USED
+
+   - Tool/Interface: Gemini in Android Studio & Gemini Web
+
+   - Model(s): Gemini 1.5 Pro / Gemini Code Assist
+
+   - Date(s) of Use: October 2026
+
+
+
+3. SCOPE OF AI ASSISTANCE
+
+   [Check or list all applicable areas]
+
+   [X] Understanding specifications and requirements
+
+   [X] Architecture & UI Layout design
+
+   [X] Core logic implementation
+
+   [X] Troubleshooting & environment debugging
+
+   [ ] Documentation & writing only
+
+
+
+4. SUMMARY OF PROMPTS / WORKFLOW
+
+   - Initial Prompt(s):
+
+     * Prompt 1: Project Setup & Navigation Drawer Base
+
+       "I am building a classic Android Views assignment in Kotlin targeting API 34+.
+
+       Project setup:
+
+       1. Enable `viewBinding` in `app/build.gradle.kts`.
+
+       2. Add dependencies for Google Material components and Coil (for image loading): `io.coil-kt:coil:2.6.0`.
+
+       3. In `AndroidManifest.xml`, add the `android.permission.INTERNET` permission.
+
+       4. Set up `MainActivity` with a `DrawerLayout`, a Material `Toolbar`, and a `NavigationView`.
+
+       5. Create the menu resource `res/menu/drawer_menu.xml` with 4 items:
+
+          - "Broadcast Receiver" (id: nav_broadcast)
+
+          - "Image Scale" (id: nav_image_scale)
+
+          - "Video" (id: nav_video)
+
+          - "Audio" (id: nav_audio)
+
+       6. In `MainActivity.kt`, wire up `ActionBarDrawerToggle` to open/close the drawer and handle navigation item selections using a FrameLayout fragment container (`R.id.fragment_container`).
+
+       7. Create placeholder fragments for each menu item so the app compiles and runs.
+
+       Provide only the exact file paths, XML snippets, and Kotlin code."
+
+
+
+     * Prompt 2: Broadcast Receiver Option 1 (Custom Receiver Flow)
+
+       "Implement the complete Broadcast Receiver screen and Option 1 (Custom Broadcast Receiver flow) for my Kotlin Android app with ViewBinding enabled. Grant and write all complete code without placeholders.
+
+       Requirements:
+
+       1. `BroadcastReceiverFragment.kt` and `fragment_broadcast_receiver.xml`:
+
+          - Contains a Spinner displaying two items: "Custom broadcast receiver" and "System battery notification receiver".
+
+          - Contains a "Proceed" Button.
+
+          - When "Custom broadcast receiver" is selected and "Proceed" is tapped, start `CustomBroadcastInputActivity`.
+
+          - When "System battery notification receiver" is selected, show a Toast for now.
+
+       2. `CustomBroadcastInputActivity.kt` and `activity_custom_broadcast_input.xml`:
+
+          - Contains an `EditText` for user text input and a "Send Broadcast" Button.
+
+          - When the button is clicked, validate that the text is not empty.
+
+          - Launch `CustomBroadcastDisplayActivity`, passing the input text via Intent extra with key `"broadcast_text"`.
+
+       3. `CustomBroadcastDisplayActivity.kt` and `activity_custom_broadcast_display.xml`:
+
+          - Contains a `TextView` to display the broadcasted message.
+
+          - Define a dynamic inner or standalone `BroadcastReceiver` listening to the custom action `"com.example.cse489assignment2.CUSTOM_BROADCAST"`.
+
+          - In `onCreate()`, register the receiver dynamically using `ContextCompat.registerReceiver` with `ContextCompat.RECEIVER_NOT_EXPORTED` for Android 13/14+ compatibility.
+
+          - Retrieve the string received from the intent extra, create an explicit/implicit Intent with action `"com.example.cse489assignment2.CUSTOM_BROADCAST"`, put the string extra into it, set the package to `packageName`, and call `sendBroadcast(intent)`.
+
+          - In the receiver's `onReceive()`, extract the string and update the `TextView`.
+
+          - Unregister the receiver safely in `onDestroy()`.
+
+       4. Manifest:
+
+          - Provide the exact `<activity>` entries to register `CustomBroadcastInputActivity` and `CustomBroadcastDisplayActivity` inside `AndroidManifest.xml`."
+
+
+
+     * Prompt 3: Broadcast Receiver Option 2 (System Battery Notification)
+
+       "Implement Option 2 of the Broadcast Receiver module: System Battery Notification Receiver in Kotlin using ViewBinding.
+
+       Requirements:
+
+       1. Update `BroadcastReceiverFragment.kt`:
+
+          - When the user selects "System battery notification receiver" from the Spinner and taps the "Proceed" Button, start `BatteryReceiverActivity`.
+
+       2. Create `BatteryReceiverActivity.kt` and `activity_battery_receiver.xml`:
+
+          - Layout:
+
+            - Include a `TextView` to display the battery percentage (e.g., "Current Battery: 85%").
+
+            - Include a `TextView` to display charging status (e.g., "Charging via AC/USB" or "Discharging").
+
+            - Include a simple progress indicator or visual bar if applicable.
+
+          - Kotlin Logic:
+
+            - Define a `BroadcastReceiver` that listens for `Intent.ACTION_BATTERY_CHANGED`.
+
+            - In `onStart()` or `onResume()`, register the receiver dynamically using `registerReceiver(batteryReceiver, IntentFilter(Intent.ACTION_BATTERY_CHANGED))`.
+
+            - In `onReceive()`:
+
+              - Extract battery level: `intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)`
+
+              - Extract battery scale: `intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)`
+
+              - Calculate percentage: `val pct = (level * 100) / scale.toFloat()`
+
+              - Check charging status using `BatteryManager.EXTRA_STATUS`
+
+              - Update the UI elements with these values.
+
+            - In `onStop()` or `onDestroy()`, ensure `unregisterReceiver(batteryReceiver)` is safely called.
+
+       3. Manifest:
+
+          - Provide the `<activity android:name=".BatteryReceiverActivity" />` tag to be placed inside `<application>` in `AndroidManifest.xml`."
+
+
+
+     * Prompt 4: Image Scale (Pinch-to-Zoom)
+
+       "Implement the Image Scale module (Option B in Drawer) in Kotlin using ViewBinding:
+
+       Requirements:
+
+       1. `fragment_image_scale.xml`:
+
+          - A layout containing an `ImageView` centered on the screen.
+
+          - A `ProgressBar` centered on top of the `ImageView` to show loading progress.
+
+          - A reset button or simple hint text indicating "Pinch to zoom in / out".
+
+       2. `ImageScaleFragment.kt`:
+
+          - Use Coil (`load("https://picsum.photos/1000/1500")`) or Glide to fetch a high-resolution image from the internet.
+
+          - Show the ProgressBar while loading, and hide it once the image is successfully loaded or failed.
+
+          - Implement pinch-to-zoom using `ScaleGestureDetector`:
+
+            - Attach an `OnTouchListener` to the `ImageView`.
+
+            - Track the scale factor (clamp between `1.0f` and `5.0f`).
+
+            - Apply transformations to `imageView.scaleX` and `imageView.scaleY`.
+
+            - Set the pivot points (`pivotX`, `pivotY`) according to the focus point of the pinch gesture so zooming feels natural.
+
+          - Ensure `android.permission.INTERNET` is documented and properly utilized."
+
+
+
+     * Prompt 5: Video Player
+
+       "Implement the Video Player module (Option C in Drawer) in Kotlin using ViewBinding:
+
+       Requirements:
+
+       1. `fragment_video.xml`:
+
+          - A layout containing a `VideoView` centered inside a FrameLayout or ConstraintLayout.
+
+          - A centered `ProgressBar` that displays while the video is buffering/loading.
+
+          - A title label (e.g., "Sample Video Stream").
+
+       2. `VideoFragment.kt`:
+
+          - Set up an embedded video player using Android's native `VideoView` and `android.widget.MediaController`.
+
+          - Use a reliable public sample MP4 stream URL: `"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"`.
+
+          - Configure the `MediaController` so standard playback controls appear when tapping the video.
+
+          - Attach `setOnPreparedListener` on the `VideoView` to hide the `ProgressBar` and start playing immediately.
+
+          - Attach `setOnErrorListener` to display a Toast or fallback message if network streaming fails.
+
+          - Properly handle Fragment lifecycle events: pause playback in `onPause()` / `onStop()` and call `stopPlayback()` in `onDestroyView()`."
+
+
+
+     * Prompt 6: Audio Player
+
+       "Implement the Audio Player module (Option D in Drawer) in Kotlin using ViewBinding:
+
+       Requirements:
+
+       1. `fragment_audio.xml`:
+
+          - An attractive card or centered layout with an audio track title.
+
+          - A `ProgressBar` showing buffering/progress state.
+
+          - Control buttons: Play, Pause, and Stop / Reset.
+
+          - A `TextView` to indicate current playback status.
+
+       2. `AudioFragment.kt`:
+
+          - Initialize Android's standard `MediaPlayer`.
+
+          - Use a public sample MP3 stream URL (`"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"`).
+
+          - Setup asynchronous preparation with `prepareAsync()` and `setOnPreparedListener`.
+
+          - Handle button clicks: Play starts/resumes, Pause pauses, and Stop resets position to the start.
+
+          - Ensure lifecycle cleanup: release `MediaPlayer` in `onStop()` / `onDestroyView()`.
+
+          - Handle errors gracefully with `setOnErrorListener`."
+
+
+
+   - Corrective Prompt(s):
+
+     * Explicitly specified `ContextCompat.RECEIVER_NOT_EXPORTED` on dynamic BroadcastReceivers to comply with Android 14+ (API 34) security guidelines.
+
+     * Fixed `ACTION_BATTERY_CHANGED` handling by dynamically registering it as a sticky intent rather than a manifest-declared receiver.
+
+     * Enforced proper Fragment view lifecycle cleanup for both `MediaPlayer` and `VideoView` instances to prevent memory and audio leaks when navigating between drawer destinations.
+
+
+
+5. HUMAN VERIFICATION & EDITING
+
+   - Tested on: Android Studio Emulator (Pixel 8, API 34 & API 35)
+
+   - Manual Changes:
+
+     * Configured project root name in `settings.gradle.kts` and app display name in `strings.xml`.
+
+     * Linked drawer menu item IDs with explicit Fragment replacement transactions in `MainActivity`.
+
+     * Adjusted XML layouts, constraints, margins, and verified valid public media stream endpoints.
+
+   - Logic Verification:
+
+     * Tested Custom Broadcast flow end-to-end: typed custom message in input activity and verified reception and display in the target activity.
+
+     * Verified battery level and charging status updates dynamically by adjusting the battery slider via Emulator Extended Controls.
+
+     * Tested pinch gesture scaling and boundary clamping (1.0x to 5.0x) on the loaded internet image.
+
+     * Verified audio and video playback, media controls, and ensured playback terminates cleanly when switching drawer screens.
+
+
+
+6. STATEMENT OF INTEGRITY
+
+   "I affirm that all AI tools used in this work are fully disclosed above.
+
+    I have reviewed, understood, and tested all generated code/artifacts,
+
+    and I accept full academic and technical responsibility for the submission."
+
+================================================================================

@@ -32,4 +32,9 @@
     <string name="discharging">Discharging</string>
     <string name="not_charging">Not Charging</string>
     <string name="unknown">Unknown</string>
+
+    <!-- Image Scale Strings -->
+    <string name="pinch_to_zoom_hint">Pinch to zoom in / out</string>
+    <string name="reset_zoom">Reset Zoom</string>
+    <string name="image_scale_description">Scaled online image</string>
 </resources>

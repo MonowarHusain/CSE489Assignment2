@@ -37,4 +37,8 @@
     <string name="pinch_to_zoom_hint">Pinch to zoom in / out</string>
     <string name="reset_zoom">Reset Zoom</string>
     <string name="image_scale_description">Scaled online image</string>
+
+    <!-- Video Player Strings -->
+    <string name="sample_video_title">Sample Video Stream</string>
+    <string name="error_video_playback">Failed to load video stream</string>
 </resources>

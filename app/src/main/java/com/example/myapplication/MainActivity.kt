@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.nav_broadcast -> replaceFragment(BroadcastFragment(), menuItem.title.toString())
+                R.id.nav_broadcast -> replaceFragment(BroadcastReceiverFragment(), menuItem.title.toString())
                 R.id.nav_image_scale -> replaceFragment(ImageScaleFragment(), menuItem.title.toString())
                 R.id.nav_video -> replaceFragment(VideoFragment(), menuItem.title.toString())
                 R.id.nav_audio -> replaceFragment(AudioFragment(), menuItem.title.toString())
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             binding.navView.setCheckedItem(R.id.nav_broadcast)
-            replaceFragment(BroadcastFragment(), getString(R.string.nav_broadcast))
+            replaceFragment(BroadcastReceiverFragment(), getString(R.string.nav_broadcast))
         }
     }
 

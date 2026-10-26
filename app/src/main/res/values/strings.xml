@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CSE489Assignment2</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_broadcast">Broadcast Receiver</string>
+    <string name="nav_image_scale">Image Scale</string>
+    <string name="nav_video">Video</string>
+    <string name="nav_audio">Audio</string>
+</resources>

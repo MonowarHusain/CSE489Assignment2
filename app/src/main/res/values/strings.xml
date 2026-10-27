@@ -41,4 +41,19 @@
     <!-- Video Player Strings -->
     <string name="sample_video_title">Sample Video Stream</string>
     <string name="error_video_playback">Failed to load video stream</string>
+
+    <!-- Audio Player Strings -->
+    <string name="audio_track_title">Sample Audio Track (SoundHelix)</string>
+    <string name="audio_status_format">Status: %1$s</string>
+    <string name="audio_status_ready">Status: Ready</string>
+    <string name="audio_status_playing">Status: Playing</string>
+    <string name="audio_status_paused">Status: Paused</string>
+    <string name="audio_status_stopped">Status: Stopped</string>
+    <string name="audio_status_buffering">Status: Buffering...</string>
+    <string name="audio_status_completed">Status: Completed</string>
+    <string name="audio_status_error">Status: Error loading audio</string>
+    <string name="btn_play">Play</string>
+    <string name="btn_pause">Pause</string>
+    <string name="btn_stop">Stop / Reset</string>
+    <string name="error_audio_playback">Failed to play audio stream</string>
 </resources>
